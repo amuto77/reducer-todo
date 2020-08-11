@@ -8,16 +8,20 @@ export const TaskList = ({ state, dispatch }) => {
                 return (
                     <div className='task-list'
                         onClick={() => 
-                            dispatch({ type: "TOGGLE_COMPLETE", payload: item.id})
-                        }
-                    >
-                        <p className={`task ${item.completed ? "completed" : ""}`}>
+                            dispatch({ 
+                                type: "TOGGLE_COMPLETE", 
+                                payload: item.id})
+                        }>
+                        <p className={
+                            `task ${item.completed 
+                            ? "completed" : ""}`}>
                             {item.name}
                         </p>
                     </div>
                 ); 
             })}
-            <button onClick={() => dispatch({ type: "CLEAR_TASK" })}>
+            <button onClick={() => dispatch({ 
+                type: "CLEAR_TASK" })}>
                 Clear
             </button>
         </div>

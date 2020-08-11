@@ -1,7 +1,7 @@
 export const initialState = {
     task: [
         { 
-            item: "Get out of Bed", 
+            name: "Get out of Bed", 
             completed: false, 
             id: new Date() }
         ],
@@ -13,8 +13,10 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 task: [
-                    state.task,
-                    { item: action.payload, completed: false, id: new Date() },
+                    ...state.task,
+                    { name: action.payload, 
+                        completed: false, 
+                        id: new Date() },
                 ],
             };
         case "TOGGLE_COMPLETE":
@@ -31,11 +33,12 @@ export const reducer = (state, action) => {
                     } else return task
                 }),
             };
-            case "CLEAR":
+            case "CLEAR_TASK":
                 return {
-                    task: state.task.filter((task) =>(
-                        !task.completed
-                    ))
+                    ...state.task,
+                    task: state.task.filter((task) =>{
+                        return task.completed === false
+                    })
                 }
         default:
             return state;
